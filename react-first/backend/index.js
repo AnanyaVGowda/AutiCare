@@ -21,7 +21,7 @@ const limiter = rateLimit({
 app.use(limiter);
 
 const PORT = process.env.PORT || 5000;
-const MONGO_URI ='mongodb+srv://dinesh:dinesh@dinesh.2k4lr.mongodb.net/myappnew?retryWrites=true&w=majority&appName=Dinesh';
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/myappnew';
 
 mongoose.connect(MONGO_URI)
   .then(() => console.log('MongoDB connected'))

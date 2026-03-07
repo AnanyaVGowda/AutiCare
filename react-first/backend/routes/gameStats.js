@@ -7,7 +7,15 @@ const User = require('../models/User');
 router.get('/', protect, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('gameStats');
-    res.json(user.gameStats);
+
+    // Ensure all required properties exist, even for legacy users
+    const stats = user.gameStats ? user.gameStats.toObject() : {};
+
+    if (!stats.colorMatch) {
+      stats.colorMatch = { highScore: 0, gamesPlayed: 0, lastPlayed: null };
+    }
+
+    res.json(stats);
   } catch (error) {
     res.status(500).json({ message: 'Error fetching game statistics' });
   }
@@ -18,7 +26,7 @@ router.put('/:game', protect, async (req, res) => {
   try {
     const { game } = req.params;
     const stats = req.body;
-    
+
     const user = await User.findById(req.user.id);
     if (!user) {
       return res.status(404).json({ message: 'User not found' });

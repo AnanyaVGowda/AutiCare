@@ -1,8 +1,48 @@
-# React + Vite
+# AutiCare: Interactive Learning Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**AutiCare** is a gamified, interactive web-based educational platform designed to provide a supportive and engaging digital learning environment. Built using React and Tailwind CSS, AutiCare offers a progressive system of mini-games focused on developing cognitive skills, emotional recognition, vocabulary, and mathematics.
 
-Currently, two official plugins are available:
+## 🌟 Key Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 1. Progressive Learning System
+Activities are structured into three distinct tiers, encouraging continuous learning and improvement through a rewarding progression system:
+- **Level 1 (Beginner):** Focuses on foundational skills like emotional recognition (*Emoji Match*) and visual identification (*Color Match*).
+- **Level 2 (Intermediate):** Unlocked by mastering beginner games. Challenges include vocabulary building (*Word Scramble*) and basic arithmetic (*Math Magic*).
+- **Level 3 (Advanced):** The ultimate test featuring *Science Quiz*, logic-based *Puzzle Adventure*, and *Geography Explorer*. Users must achieve high scores in Level 2 to unlock these games.
+
+### 2. Engaging Interactive Mini-Games
+AutiCare moves away from traditional learning by integrating education into fun, interactive modules that provide immediate visual feedback, keeping learners engaged and motivated.
+
+### 3. Real-time Progress Tracking & Rewards
+The platform includes built-in state management context that monitors user interactions across all activities. It tracks total games played, active milestones, and high scores, translating these into a rewarding visual experience for the user.
+
+### 4. Modern, Accessible Design
+- **Visual Appeal:** The UI is designed to be bright, friendly, and highly visual, utilizing playful typography, soft gradients, and custom micro-animations to create a premium feel.
+- **Responsiveness:** Fully responsive design ensures the platform is accessible and enjoyable across desktop, tablet, and mobile devices.
+
+## 🛠️ Tech Stack & Architecture
+
+- **Frontend Framework:** React 18 (using Vite for fast HMR and optimized builds)
+- **Routing:** React Router DOM (v7) for seamless single-page application navigation between the dashboard, activities, and individual games.
+- **State Management:** React Context API (`GameStatsContext`) for global tracking of scores and progression.
+- **Styling:** Tailwind CSS combined with custom CSS for rapid, modern UI development and rich aesthetics (including custom animations and dynamic hover states).
+- **Icons & Graphics:** Inline SVG icons and curated visual assets to ensure fast loading times and crisp rendering.
+
+## 🚀 Getting Started Locally
+
+To run this project on your local machine:
+
+1. **Clone the repository** (if you haven't already).
+2. **Navigate to the frontend directory:**
+   ```bash
+   cd react-first
+   ```
+3. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+4. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+5. Open your browser and visit `http://localhost:5173` (or the port provided by Vite) to explore AutiCare!

@@ -5,7 +5,7 @@ import {
   Route,
   RouterProvider
 } from "react-router-dom";
-import {Outlet} from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { GameStatsProvider } from './context/GameStatsContext';
 import Root from "./miniproject/Root";
 import Home from "./miniproject/Home.jsx";
@@ -27,7 +27,7 @@ import MathPuzzleGame from "./miniproject/MathPuzzleGame.jsx";
 import ScienceQuizGame from "./miniproject/ScienceQuizGame.jsx";
 import AlphabetGame from "./miniproject/alphabets.jsx";
 import ErrorBoundary from "./miniproject/ErrorBoundary.jsx";
-import AnimalSoundsGame from "./miniproject/AnimalSoundsGame.jsx";
+import ColorMatchGame from "./miniproject/ColorMatchGame.jsx";
 
 
 function App() {
@@ -40,9 +40,9 @@ function App() {
         <Route path="activities" element={<ProtectedRoute><Outlet /></ProtectedRoute>}>
           <Route index element={<Activities />} />
           <Route path="emoji" element={<EmojiGame />} />
-          <Route path="animalsounds" element={<AnimalSoundsGame />} />
-         
-         
+          <Route path="colormatch" element={<ColorMatchGame />} />
+
+
           <Route path="mathgame" element={<MathGame />} />
           <Route path="wordscramble" element={<WordScrambleGame />} />
           <Route path="geography" element={<GeographyGame />} />
@@ -53,18 +53,18 @@ function App() {
         <Route path="progress" element={<ProtectedRoute><Progress /></ProtectedRoute>} />
         <Route path="rewards" element={<ProtectedRoute><Rewards /></ProtectedRoute>} />
         <Route path="resources" element={<ProtectedRoute><Resources /></ProtectedRoute>} />
-       
+
       </Route>
     )
   );
 
-  return(
-<>
-<GameStatsProvider>
-  <RouterProvider router={router} />
-</GameStatsProvider>
-</>
-  ) 
+  return (
+    <>
+      <GameStatsProvider>
+        <RouterProvider router={router} />
+      </GameStatsProvider>
+    </>
+  )
 }
 
 export default App;

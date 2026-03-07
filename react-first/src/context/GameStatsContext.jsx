@@ -17,12 +17,13 @@ export const GameStatsProvider = ({ children }) => {
 
   const [gameStats, setGameStats] = useState({
     emoji: { highScore: 0, gamesPlayed: 0, lastPlayed: null },
+    colorMatch: { highScore: 0, gamesPlayed: 0, lastPlayed: null },
     // memory: { highScore: 0, gamesPlayed: 0, lastPlayed: null },
     // alphabet: { highScore: 0, gamesPlayed: 0, lastPlayed: null },
     math: { highScore: 0, gamesPlayed: 0, lastPlayed: null },
     word: { highScore: 0, gamesPlayed: 0, lastPlayed: null },
     science: { highScore: 0, gamesPlayed: 0, lastPlayed: null },
-      geography: { highScore: 0, gamesPlayed: 0, lastPlayed: null },
+    geography: { highScore: 0, gamesPlayed: 0, lastPlayed: null },
     mathPuzzle: { highScore: 0, gamesPlayed: 0, lastPlayed: null, puzzlesSolved: 0 },
     totalGamesPlayed: 0
   });
@@ -54,9 +55,15 @@ export const GameStatsProvider = ({ children }) => {
 
 
   const calculateTotalGames = (stats) => {
-    return stats.emoji.gamesPlayed + stats.memory.gamesPlayed + stats.alphabet.gamesPlayed + 
-           stats.math.gamesPlayed + stats.word.gamesPlayed + stats.science.gamesPlayed + 
-           stats.geography.gamesPlayed + stats.mathPuzzle.gamesPlayed;
+    return (stats.emoji?.gamesPlayed || 0) +
+      (stats.colorMatch?.gamesPlayed || 0) +
+      (stats.memory?.gamesPlayed || 0) +
+      (stats.alphabet?.gamesPlayed || 0) +
+      (stats.math?.gamesPlayed || 0) +
+      (stats.word?.gamesPlayed || 0) +
+      (stats.science?.gamesPlayed || 0) +
+      (stats.geography?.gamesPlayed || 0) +
+      (stats.mathPuzzle?.gamesPlayed || 0);
   };
 
   const updateEmojiStats = async (score) => {
@@ -75,6 +82,31 @@ export const GameStatsProvider = ({ children }) => {
           emoji: {
             highScore: Math.max(prev.emoji.highScore, score),
             gamesPlayed: prev.emoji.gamesPlayed + 1,
+            lastPlayed: new Date().toISOString()
+          }
+        };
+        newStats.totalGamesPlayed = calculateTotalGames(newStats);
+        return newStats;
+      });
+    }
+  };
+
+  const updateColorMatchStats = async (score) => {
+    try {
+      const stats = {
+        highScore: score,
+        gamesPlayed: (gameStats.colorMatch?.gamesPlayed || 0) + 1,
+        lastPlayed: new Date().toISOString()
+      };
+      const updatedStats = await gameService.updateGameStats('colorMatch', stats);
+      setGameStats(updatedStats);
+    } catch (error) {
+      setGameStats(prev => {
+        const newStats = {
+          ...prev,
+          colorMatch: {
+            highScore: Math.max(prev.colorMatch?.highScore || 0, score),
+            gamesPlayed: (prev.colorMatch?.gamesPlayed || 0) + 1,
             lastPlayed: new Date().toISOString()
           }
         };
@@ -268,6 +300,7 @@ export const GameStatsProvider = ({ children }) => {
   const value = {
     gameStats,
     updateEmojiStats,
+    updateColorMatchStats,
     // updateMemoryStats,
     // updateAlphabetStats,
     updateMathStats,

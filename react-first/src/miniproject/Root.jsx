@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from './Header'
 import Footer from './Footer'
-import {Outlet} from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { GameStatsProvider } from '../context/GameStatsContext';
 
 function Root() {
@@ -9,19 +9,19 @@ function Root() {
 
     <>
 
-<div className='main flex flex-col h-screen'>
-  <Header/>
-  <GameStatsProvider>
-    <Outlet/>
-  </GameStatsProvider>
-</div>
+      <div className='main flex flex-col min-h-screen'>
+        <Header />
+        <GameStatsProvider>
+          <Outlet />
+        </GameStatsProvider>
+      </div>
 
 
-    
-    
-    
+
+
+
     </>
-   
+
   )
 }
 

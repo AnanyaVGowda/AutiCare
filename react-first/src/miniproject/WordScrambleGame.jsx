@@ -7,21 +7,66 @@ const wordLists = {
     { word: 'DOG', hint: 'A loyal furry friend' },
     { word: 'SUN', hint: 'It lights up our day' },
     { word: 'HAT', hint: 'You wear it on your head' },
-    { word: 'BOOK', hint: 'You read stories in it' }
+    { word: 'BOOK', hint: 'You read stories in it' },
+    { word: 'BIRD', hint: 'An animal that flies' },
+    { word: 'TREE', hint: 'It has leaves and a trunk' },
+    { word: 'FISH', hint: 'Swims in the water' },
+    { word: 'STAR', hint: 'Twinkles in the night sky' },
+    { word: 'MOON', hint: 'Shines at night' },
+    { word: 'CAR', hint: 'Has four wheels and drives' },
+    { word: 'SHOE', hint: 'You wear it on your foot' },
+    { word: 'MILK', hint: 'White drink from a cow' },
+    { word: 'BALL', hint: 'Round object you bounce' },
+    { word: 'SNOW', hint: 'White and cold, falls from sky' },
+    { word: 'BEAR', hint: 'Large furry animal' },
+    { word: 'FROG', hint: 'Green animal that hops' },
+    { word: 'PIG', hint: 'Pink animal that oinks' },
+    { word: 'DUCK', hint: 'Bird that quacks' },
+    { word: 'CUP', hint: 'You drink from it' }
   ],
   medium: [
     { word: 'APPLE', hint: 'A fruit that keeps the doctor away' },
     { word: 'HOUSE', hint: 'A place where people live' },
     { word: 'WATER', hint: 'You drink it every day' },
     { word: 'SMILE', hint: 'Shows you are happy' },
-    { word: 'PLANT', hint: 'It grows in the garden' }
+    { word: 'PLANT', hint: 'It grows in the garden' },
+    { word: 'CHAIR', hint: 'Furniture you sit on' },
+    { word: 'TABLE', hint: 'Furniture you eat on' },
+    { word: 'PAPER', hint: 'You write or draw on it' },
+    { word: 'PENCIL', hint: 'Tool for writing or drawing' },
+    { word: 'SCHOOL', hint: 'Place where children learn' },
+    { word: 'TRAIN', hint: 'Moves on tracks' },
+    { word: 'PLANE', hint: 'Vehicle that flies in the sky' },
+    { word: 'PHONE', hint: 'Used for talking to people far away' },
+    { word: 'CLOCK', hint: 'Tells you the time' },
+    { word: 'BREAD', hint: 'Baked food made from flour' },
+    { word: 'MOUSE', hint: 'Small rodent or computer device' },
+    { word: 'GRASS', hint: 'Green plants on the ground' },
+    { word: 'SHIRT', hint: 'Clothing for your upper body' },
+    { word: 'CLOUD', hint: 'White fluffy thing in the sky' },
+    { word: 'TIGER', hint: 'Large wild cat with stripes' }
   ],
   hard: [
     { word: 'RAINBOW', hint: 'Colorful arc in the sky after rain' },
     { word: 'ELEPHANT', hint: 'Large gray animal with a trunk' },
     { word: 'COMPUTER', hint: 'Machine you use to play games' },
     { word: 'BUTTERFLY', hint: 'Beautiful insect with colorful wings' },
-    { word: 'DINOSAUR', hint: 'Ancient reptile that lived long ago' }
+    { word: 'DINOSAUR', hint: 'Ancient reptile that lived long ago' },
+    { word: 'UMBRELLA', hint: 'Keeps you dry when it rains' },
+    { word: 'ASTRONAUT', hint: 'Person who travels to space' },
+    { word: 'HOSPITAL', hint: 'Place where sick people get better' },
+    { word: 'LIBRARY', hint: 'Place with many books to borrow' },
+    { word: 'TEACHER', hint: 'Person who helps you learn' },
+    { word: 'CHOCOLATE', hint: 'Sweet brown treat' },
+    { word: 'ALLIGATOR', hint: 'Large reptile with many teeth' },
+    { word: 'HELICOPTER', hint: 'Flying vehicle with blades on top' },
+    { word: 'KANGAROO', hint: 'Jumping animal from Australia' },
+    { word: 'MOUNTAIN', hint: 'Very tall landform' },
+    { word: 'AIRPLANE', hint: 'Large vehicle that flies' },
+    { word: 'VOLCANO', hint: 'Mountain that erupts lava' },
+    { word: 'PENGUIN', hint: 'Black and white bird that swims' },
+    { word: 'TELESCOPE', hint: 'Tool to look at stars' },
+    { word: 'BACKPACK', hint: 'Bag you wear on your back' }
   ]
 };
 
@@ -48,10 +93,16 @@ const WordScrambleGame = () => {
 
   const generateNewWord = () => {
     const words = wordLists[difficulty];
-    const randomIndex = Math.floor(Math.random() * words.length);
-    const selectedWord = words[randomIndex];
+    let selectedWord;
+
+    // Pick a new random word, making sure it's not the exact same one as currentWord
+    do {
+      const randomIndex = Math.floor(Math.random() * words.length);
+      selectedWord = words[randomIndex];
+    } while (currentWord && selectedWord.word === currentWord.word && words.length > 1);
+
     let scrambled;
-    
+
     // Ensure the scrambled word is different from the original
     do {
       scrambled = scrambleWord(selectedWord.word);
