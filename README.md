@@ -46,3 +46,11 @@ To run this project on your local machine:
    npm run dev
    ```
 5. Open your browser and visit `http://localhost:5173` (or the port provided by Vite) to explore AutiCare!
+
+<img width="1880" height="908" alt="Screenshot 2026-03-09 232612" src="https://github.com/user-attachments/assets/929edeeb-60a1-4616-a6ae-0ecde697add8" />
+
+<img width="1836" height="909" alt="Screenshot 2026-03-09 232725" src="https://github.com/user-attachments/assets/e0018677-fea3-4769-a14d-c9a4b5f51df9" />
+
+<img width="1421" height="913" alt="Screenshot 2026-03-09 232805" src="https://github.com/user-attachments/assets/435a6743-30fd-4de7-a128-66bab2888839" />
+
+
